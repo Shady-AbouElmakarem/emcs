@@ -1,0 +1,62 @@
+<div style="padding: 15px 20px 0 15px">
+  <%= form_tag "/grades", class: "form-horizontal" do %>
+  <!-- Select  student-->
+  <div class="form-group">
+    <label class="control-label col-md-3" style="text-align: left !important;"for="student">Student:</label>
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="fa fa-graduation-cap"></i></span>
+      <select id="select-student" class="form-control" name="student" disabled>
+        <option value="" disabled selected hidden>Select Student</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Select  course-->
+  <div class="form-group">
+    <label class="control-label col-md-3" style="text-align: left !important;"for="course">Course ID:</label>
+    <div class="input-group ">
+      <span class="input-group-addon"><i class="fa fa-book"></i></span>
+      <select id="select-course" class="form-control" name="course" disabled>
+        <option value="" disabled selected hidden>Select Course</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Text input -->
+  <div class="form-group">
+    <label class="control-label col-md-3" style="text-align: left !important;"for="midterm_grade">Mid Term Exam Grade:</label>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+      <input  name="midterm_grade" class="form-control"  type="text">
+    </div>
+  </div>
+
+  <!-- Text input -->
+  <div class="form-group">
+    <label class="control-label col-md-3" style="text-align: left !important;"for="final_grade">Final Term Exam Grade:</label>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+      <input  name="final_grade" class="form-control"  type="text">
+    </div>
+  </div>
+
+  <!-- Text input -->
+  <div class="form-group">
+    <label class="control-label col-md-3" style="text-align: left !important;"for="total_grade"> Total Grade:</label>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+      <input  name="total_grade" class="form-control"  type="text">
+    </div>
+  </div>
+
+  <!-- Button -->
+  <br />
+  <div class="form-group">
+    <div class="col-md-4">
+      <button id="apply" type="button" class="btn btn-primary" >Apply Grades </button>
+    </div>
+  </div>
+  <% end %>
+</div>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="/js/grades.js"></script>

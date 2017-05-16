@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+  <body class="skin-yellow-light sidebar-mini">
+    <div class="wrapper">
+
+      <!-- Main Header -->
+      <header class="main-header">
+
+        <!-- Logo -->
+          <a href="/students" style="text-decoration: none;" class="logo">
+
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>EMCS </b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>EMCS </b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a> -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user user-menu">
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+
+            <!-- Manage Students -->
+            <li class="treeview">
+              <a href="#"><i class="fa fa-graduation-cap"></i> <span>Students</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/students"><i class="fa fa-table"></i> <span>Show all Students</span></a></li>
+                <!-- <li><a href="/users/new"><i class="fa fa-link"></i> <span>Add User</span></a></li> -->
+              </ul>
+            </li>
+
+            <!-- Manage Grades -->
+            <li><a href="/grades"><i class="fa fa-edit"></i> <span>Add Grades</span></a></li>
+
+          </ul>
+          <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+
+        <!-- Main content -->
+        <section class="content">
+          <%= yield %>
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">EMCS</a>.</strong> All rights reserved.
+      </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+    <% if flash[:notice] %>
+    <script>alert("<%= flash[:notice]%>");</script>
+    <% end %>
+    <!-- AdminLTE App -->
+    <script src="/js/adminlte.js"></script>
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. Slimscroll is required when using the
+         fixed layout. -->
+
+  </body>
+</html>

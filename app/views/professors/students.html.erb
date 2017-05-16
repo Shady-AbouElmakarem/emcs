@@ -1,0 +1,55 @@
+<style>
+  th{
+    width:10vw !important;
+    background-color: #337AB7;
+    color: white;
+  }
+  table{
+    table-layout: fixed;
+  }
+</style>
+<table class="mdl-data-table table-bordered table table-striped cell-border" >
+  <thead>
+    <tr >
+      <th>ID</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Academic Hours</th>
+      <th>Level</th>
+      <th>Major</th>
+      <th>Section</th>
+      <th>Courses</th>
+      <th>Grades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |value| %>
+      <tr>
+        <td><%= value[0] %></td>
+        <td ><%= value[1]["student_name"] %></td>
+        <td ><%= value[1]["phone"] %></td>
+        <td ><%= value[1]["address"]["city"]+', '+value[1]["address"]["street"] %></td>
+        <td ><%= value[1]["academic"] %></td>
+        <td ><%= value[1]["level"] %></td>
+        <td ><%= value[1]["major"] %></td>
+        <td ><%= value[1]["section"] %></td>
+        <td ><%= link_to "View Registered Courses", "/students/"+value[0]+"/courses"%></td>
+        <td ><%= link_to "View Student Grades", "/students/"+value[0]+"/grades"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('table').DataTable({
+        "scrollX": true,
+        "columnDefs": [
+          { "width": "20%", "targets": "_all" },
+        ]
+      });
+  });
+</script>

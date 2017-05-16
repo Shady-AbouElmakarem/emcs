@@ -1,0 +1,59 @@
+<style>
+  th{
+    background-color: #337AB7;
+    color: white;
+  }
+</style>
+<table class="mdl-data-table table-bordered table table-striped cell-border" >
+  <% if @page == "courses" %>
+    <thead>
+      <tr >
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Course Level</th>
+        <th>Major</th>
+        <th>Semester Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |value| %>
+        <tr>
+          <td><%=value[0]%></td>
+          <td><%=value[1]["course_name"]%></td>
+          <td><%=value[1]["course_level"]%></td>
+          <td><%=value[1]["major"]%></td>
+          <td><%=value[1]["semester_hours"]%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif @page == "grades" %>
+    <thead>
+      <tr >
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Midterm Grade</th>
+        <th>Final Exam Grade</th>
+        <th>Total Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @grades.each do |value| %>
+        <tr>
+          <td><%=value[0]%></td>
+          <td><%=value[1]["course_name"]%></td>
+          <td><%=value[1]["exam"]["mid_term_grades"]%></td>
+          <td><%=value[1]["exam"]["final_grades"]%></td>
+          <td><%=value[1]["exam"]["total_grade"]%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('table').DataTable();
+  });
+</script>
