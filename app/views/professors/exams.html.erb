@@ -1,0 +1,37 @@
+<style>
+  th{
+    background-color: #337AB7;
+    color: white;
+  }
+</style>
+<%= form_tag "#", class: "form-horizontal" do %>
+<div style="padding: 15px 20px 0 15px">
+  <!-- Select  level-->
+  <div class="form-group">
+    <label class="control-label col-md-1" style="text-align: left !important;"for="level">Level:</label>
+    <div class="input-group ">
+      <select id="select-level" class="form-control" name="level">
+        <option value="" disabled selected hidden>Select Level</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+  </div>
+</div>
+<%end%>
+<br />
+<table class="mdl-data-table table-bordered table table-striped cell-border hidden" >
+  <thead>
+    <tr >
+      <th>Course Name</th>
+      <th>Course ID</th>
+      <th>Halls</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="/js/exams.js"></script>

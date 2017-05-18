@@ -4,6 +4,8 @@
     <title>Project</title>
     <%= csrf_meta_tags %>
 
+    <link rel="shortcut icon" href="/images/logo.png" />
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -16,11 +18,11 @@
 
         <!-- Logo -->
           <a href="/students" style="text-decoration: none;" class="logo">
-
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>EMCS </b></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>EMCS </b></span>
+            <img style="height: 80%;"src="/images/logo.png" />
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b> EMCS</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg" style="float:right; margin-right: 60px;"><b> EMCS</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -49,19 +51,20 @@
 
             <!-- Manage Students -->
             <li class="treeview">
-              <a href="#"><i class="fa fa-graduation-cap"></i> <span>Students</span>
+              <a href="/students"><i class="fa fa-graduation-cap"></i> <span>Students</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
                 <li><a href="/students"><i class="fa fa-table"></i> <span>Show all Students</span></a></li>
+                <li><a href="/grades"><i class="fa fa-edit"></i> <span>Add Grades</span></a></li>
                 <!-- <li><a href="/users/new"><i class="fa fa-link"></i> <span>Add User</span></a></li> -->
               </ul>
             </li>
 
-            <!-- Manage Grades -->
-            <li><a href="/grades"><i class="fa fa-edit"></i> <span>Add Grades</span></a></li>
+            <!-- Manage Exams -->
+            <li><a href="/exams"><i class="fa fa-file-text-o"></i> <span>View Exams</span></a></li>
 
           </ul>
           <!-- /.sidebar-menu -->
