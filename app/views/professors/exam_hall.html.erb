@@ -4,21 +4,23 @@
     color: white;
   }
 </style>
-
-<br />
-<table class="mdl-data-table table-bordered table table-striped cell-border" >
-  <thead>
-    <tr >
-      <th>Student Name</th>
-      <th>Student ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr >
-      <% @students_ids.each do |value| %>
-        <td><%= @students[value]["student_name"] %></td>
-        <td><%= value %></td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+<section class="content-header">
+  <h1>List of students in hall <%= params[:hall] %> during <%= params[:course_name] %> exam:</h1>
+  <br />
+  <table class="mdl-data-table table-bordered table table-striped cell-border" >
+    <thead>
+      <tr >
+        <th>Student Name</th>
+        <th>Student ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <% @students_ids.each do |value| %>
+          <td><%= @students[value]["student_name"] %></td>
+          <td><%= value %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</section>
