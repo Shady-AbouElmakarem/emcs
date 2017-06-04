@@ -31,8 +31,9 @@
       <tr >
         <th>Course ID</th>
         <th>Course Name</th>
-        <th>Midterm Grade</th>
-        <th>Final Exam Grade</th>
+        <th>Midterm Exam Marks</th>
+        <th>Final Exam Marks</th>
+        <th>Practical Exam Marks</th>
         <th>Total Grade</th>
       </tr>
     </thead>
@@ -41,8 +42,9 @@
         <tr>
           <td><%=value[0]%></td>
           <td><%=value[1]["course_name"]%></td>
-          <td><%=value[1]["exam"]["mid_term_grades"]%></td>
-          <td><%=value[1]["exam"]["final_grades"]%></td>
+          <td><%=value[1]["exam"]["mid_term_marks"]%></td>
+          <td><%=value[1]["exam"]["final_marks"]%></td>
+          <td><%=value[1]["exam"]["practical_marks"]%></td>
           <td><%=value[1]["exam"]["total_grade"]%></td>
         </tr>
       <% end %>

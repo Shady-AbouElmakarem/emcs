@@ -35,11 +35,14 @@ $('#select-student').change(function(){
     for (var course in student.courses){
       if (student.courses.hasOwnProperty(course))
       {
-        var select = document.getElementById('select-course');
-        var opt = document.createElement('option');
-        opt.value = course;
-        opt.text = course;
-        select.add(opt);
+        firebase.database().ref('/courses/'+ course +'/course_name' ).once("value", function(snapshot2){
+          var course_name = snapshot2.val();
+          var select = document.getElementById('select-course');
+          var opt = document.createElement('option');
+          opt.value = course;
+          opt.text = course_name;
+          select.add(opt);
+        });
       }
     }
     $('#select-course').prop('disabled', false);
@@ -49,12 +52,60 @@ $('#select-student').change(function(){
 $('#apply').click(function(){
     var student_id = $('#select-student').val();
     var course_id = $('#select-course').val();
-    var midterm_grade = $('input[name="midterm_grade"]').val();
-    var final_grade = $('input[name="final_grade"]').val();
-    var total_grade = $('input[name="total_grade"]').val();
-    firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/mid_term_grades').set(midterm_grade);
-    firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/final_grades').set(final_grade);
+    var semester_hours;
+    firebase.database().ref('/courses/'+ course_id +'/semester_hours' ).once("value", function(snapshot){
+      semester_hours = snapshot.val();
+    });
+    var midterm_marks = $('input[name="midterm_marks"]').val();
+    var final_marks = $('input[name="final_marks"]').val();
+    var practical_marks = $('input[name="practical_marks"]').val();
+    var total_grade = parseInt(midterm_marks) + parseInt(final_marks) + parseInt(practical_marks);
+    if(total_grade == 100){
+      total_grade = "A+";
+    }
+    else if (total_grade >= 93 && total_grade <100) {
+      total_grade = "A";
+    }
+    else if (total_grade >= 90 && total_grade <93) {
+      total_grade = "A-";
+    }
+    else if (total_grade >= 87 && total_grade <90) {
+      total_grade = "B+";
+    }
+    else if (total_grade >= 83 && total_grade <87) {
+      total_grade = "B";
+    }
+    else if (total_grade >= 80 && total_grade <83) {
+      total_grade = "B-";
+    }
+    else if (total_grade >= 77 && total_grade <80) {
+      total_grade = "C+";
+    }
+    else if (total_grade >= 73 && total_grade <77) {
+      total_grade = "C";
+    }
+    else if (total_grade >= 70 && total_grade <73) {
+      total_grade = "C-";
+    }
+    else if (total_grade >= 67 && total_grade <70) {
+      total_grade = "D+";
+    }
+    else if (total_grade >= 63 && total_grade <67) {
+      total_grade = "D";
+    }
+    else if (total_grade >= 60 && total_grade <63) {
+      total_grade = "D-";
+    }
+    else if (total_grade < 60) {
+      total_grade = "F";
+    }
+    else {
+      total_grade = "Error";
+    }
+    firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/mid_term_marks').set(midterm_marks);
+    firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/final_marks').set(final_marks);
+    firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/practical_marks').set(practical_marks);
     firebase.database().ref('students/'+student_id+'/courses/'+course_id+'/exam/total_grade').set(total_grade);
-    alert('Grades applied successfully.')
+    alert('Grades applied successfully.');
     location.reload();
 });
