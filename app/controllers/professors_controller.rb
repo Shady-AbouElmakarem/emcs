@@ -18,10 +18,10 @@ class ProfessorsController < ApplicationController
 
       @page = "courses"
 
-      @student["courses"].each_with_index do |value, key|
+      @student["courses"].each do |value|
         @courses = Array.new
-        @allCourses.each_with_index do |value2, key2|
-          if key2 == key
+        @allCourses.each do |value2|
+          if value[0] == value2[0]
             @courses.push(value2)
           end
         end
@@ -32,10 +32,10 @@ class ProfessorsController < ApplicationController
 
       @page = "grades"
 
-      @student["courses"].each_with_index do |value, key|
+      @student["courses"].each do |value|
         @grades = Array.new
-        @allCourses.each_with_index do |value2, key2|
-          if key2 == key
+        @allCourses.each do |value2|
+          if value[0] == value2[0]
             value2[1]["exam"] =  value[1]["exam"]
             @grades.push(value2)
           end
