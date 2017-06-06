@@ -2,7 +2,10 @@ class ProfessorsController < ApplicationController
   before_action :authorize_user
   require 'json'
 
-  # list students
+  # home
+  def home
+  end
+
   def students
     @students = firebase.get('students').body
   end

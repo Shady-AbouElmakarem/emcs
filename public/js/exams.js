@@ -9,38 +9,44 @@ var config = {
 };
 
 firebase.initializeApp(config);
+var exams, courses;
+
+firebase.database().ref('/courses/').once("value", function(snapshot){
+  courses = snapshot.val();
+  firebase.database().ref('/exams/').once("value", function(snap){
+    exams = snap.val()
+    $('#select-level').prop('disabled', false);
+  });
+});
 
 $('#select-level').change(function(){
   $("table").removeClass('hidden');
   $('table tbody tr').remove();
-  firebase.database().ref('/exams/').once("value", function(snapshot){
-    var exams = snapshot.val()
-    for (var exam in exams){
-      if (exams.hasOwnProperty(exam))
-      {
-        var course_id = exams[exam].course_id;
-        firebase.database().ref('/courses/'+ course_id).once("value", function(snap){
-          var course_name = snap.val().course_name;
-          if(snap.val().course_level == $('#select-level').val()){
-            var halls_array = "";
-            var halls = exams[exam].halls;
-            for (var hall in halls){
-              if(halls.hasOwnProperty(hall))
-              {
-                halls_array += "<a href='/halls/?exam="+ exam + "&hall="+ hall + "&course_name="+ course_name +"'>"+ hall +"</a>, "
-              }
-            }
-            halls_array = halls_array.slice(0,-2);
-            $('table tbody').append(
-              '<tr>'
-              +'<td>'+ course_name +'</td>'
-              +'<td>'+ course_id +'</td>'
-              +'<td>'+ halls_array +'</td>'
-              +'</tr>'
-            );
+  for (var exam in exams){
+    if (exams.hasOwnProperty(exam))
+    {
+      var course_id = exams[exam].course_id;
+      if(courses[course_id].course_level == $('#select-level').val()){
+        var course_name = courses[course_id].course_name;
+        var exam_type = exams[exam].exam_type;
+        var halls = exams[exam].halls;
+        var halls_array = "";
+        for (var hall in halls){
+          if(halls.hasOwnProperty(hall))
+          {
+            halls_array += "<a href='/halls/?exam="+ exam + "&hall="+ hall + "&course_name="+ course_name +"'>"+ hall +"</a>, "
           }
-        });
+        }
+        halls_array = halls_array.slice(0,-2);
+        $('table tbody').append(
+          '<tr>'
+          +'<td>'+ course_name +'</td>'
+          +'<td>'+ course_id +'</td>'
+          +'<td>'+ exam_type +'</td>'
+          +'<td>'+ halls_array +'</td>'
+          +'</tr>'
+        );
       }
     }
-  });
+  }
 });

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         if @user["password"] == params[:password]
           #password entered is correct.
           session[:user_id] = @user_id
-          redirect_to '/students'
+          redirect_to '/home'
         else
           #wrong password, back to the login form.
           redirect_to '/login', :flash => { :notice => "Wrong User ID or Password" }

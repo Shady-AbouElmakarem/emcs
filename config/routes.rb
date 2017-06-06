@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'professors#students'
+  root 'professors#home'
+
+  # sessions routes
+  get '/home' => 'professors#home'
 
   # sessions routes
   get '/login' => 'sessions#new'
