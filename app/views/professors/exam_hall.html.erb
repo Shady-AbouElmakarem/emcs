@@ -10,17 +10,17 @@
   <table class="mdl-data-table table-bordered table table-striped cell-border" >
     <thead>
       <tr >
-        <th>Student Name</th>
-        <th>Student ID</th>
+        <th class="col-xs-6">Student Name</th>
+        <th class="col-xs-6">Student ID</th>
       </tr>
     </thead>
     <tbody>
-      <tr >
         <% @students_ids.each do |value| %>
+        <tr >
           <td><%= @students[value]["student_name"] %></td>
           <td><%= value %></td>
+        </tr>
         <% end %>
-      </tr>
     </tbody>
   </table>
 </section>
