@@ -1,0 +1,49 @@
+<style>
+  th{
+    background-color: #337AB7;
+    color: white;
+  }
+</style>
+<table class="mdl-data-table table-bordered table table-striped cell-border" >
+  <thead>
+    <tr >
+      <th>Student ID</th>
+      <th>Student Name</th>
+      <th>Courses</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr >
+        <td><%= student[0] %></td>
+        <td><%= student[1]["student_name"] %></td>
+        <td>
+        <% student[1]["courses"].each do |std_course| %>
+          <%= @courses[std_course[0]]["course_name"] %>
+          <br /><br />
+        <% end %>
+        </td>
+        <td>
+          <% student[1]["courses"].each do |std_course| %>
+            <% if std_course[1]["exam"]["total_grade"] == "" %>
+              -
+              <br /><br />
+            <% else %>
+              <%= std_course[1]["exam"]["total_grade"] %>
+              <br /><br />
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('table').DataTable();
+  });
+</script>

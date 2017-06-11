@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   get '/grades' => 'professors#grades'
   post '/grades' => 'professors#grades'
 
-  # exams routes
-  get '/exams' => 'professors#exams'
-  get '/halls' => 'professors#exam_hall'
+  # final results routes
+  get '/final_results' => 'professors#final_results'
 
 end

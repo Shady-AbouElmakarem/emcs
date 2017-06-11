@@ -52,13 +52,10 @@ class ProfessorsController < ApplicationController
   def grades
   end
 
-  # View exams
-  def exams
+  # Final Results
+  def final_results
+    @students = firebase.get('students').body
+    @courses = firebase.get('courses').body
   end
 
-  #View hall
-  def exam_hall
-    @students_ids = firebase.get('exams/'+ params[:exam] +'/halls/'+ params[:hall]).body
-    @students = firebase.get('students').body;
-  end
 end
