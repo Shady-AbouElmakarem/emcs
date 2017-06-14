@@ -10,8 +10,14 @@ var config = {
 
 firebase.initializeApp(config);
 
+var courses;
+firebase.database().ref('/courses').once("value", function(snapshot){
+  courses = snapshot.val()
+});
+
+var students;
 firebase.database().ref('/students').once("value", function(snapshot){
-  var students = snapshot.val()
+  students = snapshot.val()
   for (var student in students){
     if (students.hasOwnProperty(student))
     {
@@ -30,23 +36,20 @@ $('#select-student').change(function(){
   $('#select-course option:not(:eq(0))').remove();
   $('#select-course option:eq(0)').prop('selected', true)
   $('#select-course').prop('disabled', true);
-  firebase.database().ref('/students/'+$( "#select-student option:selected").val()).once("value", function(snapshot){
-    var student = snapshot.val()
-    for (var course in student.courses){
-      if (student.courses.hasOwnProperty(course))
-      {
-        firebase.database().ref('/courses/'+ course +'/course_name' ).once("value", function(snapshot2){
-          var course_name = snapshot2.val();
-          var select = document.getElementById('select-course');
-          var opt = document.createElement('option');
-          opt.value = course;
-          opt.text = course_name;
-          select.add(opt);
-        });
-      }
+
+  var student = students[$("#select-student option:selected").val()];
+  for (var course in student.courses){
+    if (student.courses.hasOwnProperty(course))
+    {
+      var course_name = courses[course].course_name;
+      var select = document.getElementById('select-course');
+      var opt = document.createElement('option');
+      opt.value = course;
+      opt.text = course_name;
+      select.add(opt);
     }
-    $('#select-course').prop('disabled', false);
-  });
+  }
+  $('#select-course').prop('disabled', false);
 });
 
 $('#apply').click(function(){

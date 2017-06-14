@@ -21,11 +21,13 @@ class ProfessorsController < ApplicationController
 
       @page = "courses"
 
+      @courses = Array.new
+
       @student["courses"].each do |value|
-        @courses = Array.new
         @allCourses.each do |value2|
           if value[0] == value2[0]
             @courses.push(value2)
+            break
           end
         end
       end
@@ -35,12 +37,14 @@ class ProfessorsController < ApplicationController
 
       @page = "grades"
 
+      @grades = Array.new
+
       @student["courses"].each do |value|
-        @grades = Array.new
         @allCourses.each do |value2|
           if value[0] == value2[0]
             value2[1]["exam"] =  value[1]["exam"]
             @grades.push(value2)
+            break
           end
         end
       end
